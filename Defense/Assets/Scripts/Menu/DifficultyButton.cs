@@ -4,6 +4,9 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Handles all logic of the difficulty button
+/// </summary>
 public class DifficultyButton : MonoBehaviour {
 
 	private int index;

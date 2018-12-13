@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles the overall data and the logic of the difficulty of the enemies
+/// </summary>
 public class EnemyManager : MonoBehaviour {
 	
 	public GameData gameData;
@@ -43,7 +46,6 @@ public class EnemyManager : MonoBehaviour {
 	/// Increases difficulty based on chosen level and which wave and day the player is on
 	/// </summary>
 	/// <param name="attributes"></param>
-	/// <param name="difficulty"></param>
 	/// <param name="diff"></param>
 	/// <param name="wave"></param>
 	/// <param name="day"></param>
@@ -102,8 +104,11 @@ public class EnemyManager : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Method to call from other scripts
+	///	Method to call from other scripts
 	/// </summary>
+	/// <param name="diff"></param>
+	/// <param name="wave"></param>
+	/// <param name="day"></param>
 	public void IncreaseDifficulty(bool diff, bool wave, bool day)
 	{
 		IncreaseDifficulty(warriorAttributes, diff, wave, day);

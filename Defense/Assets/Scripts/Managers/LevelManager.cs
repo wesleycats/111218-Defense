@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles all data and logic of the main scene / level
+/// </summary>
 public class LevelManager : MonoBehaviour {
 
 	public GameObject dayCompletePanel;

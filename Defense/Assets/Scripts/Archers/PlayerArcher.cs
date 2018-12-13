@@ -19,40 +19,6 @@ public class PlayerArcher : MonoBehaviour {
 
 	private InputManager input;
 
-	public int DamageOutput
-	{
-		get
-		{
-			return damageOutput;
-		}
-		set
-		{
-			damageOutput = value;
-		}
-	}
-	public float AttackSpeed
-	{
-		get
-		{
-			return attackSpeed;
-		}
-		set
-		{
-			attackSpeed = value;
-		}
-	}
-	public float ArrowSpeed
-	{
-		get
-		{
-			return arrowSpeed;
-		}
-		set
-		{
-			arrowSpeed = value;
-		}
-	}
-
 	private void Awake()
 	{
 		input = FindObjectOfType<InputManager>();
@@ -104,4 +70,8 @@ public class PlayerArcher : MonoBehaviour {
 		arrow.ArrowDamage = damage;
 		arrow.ArrowSpeed = speed;
 	}
+
+	public int DamageOutput { get { return damageOutput; } set { damageOutput = value; } }
+	public float AttackSpeed { get { return attackSpeed; } set { attackSpeed = value; } }
+	public float ArrowSpeed { get { return arrowSpeed; } set { arrowSpeed = value; } }
 }

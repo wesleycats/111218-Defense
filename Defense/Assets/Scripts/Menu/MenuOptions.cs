@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
 
+/// <summary>
+/// Handles all the logic of the buttons of the menus to navigate between scenes and control the pause menu
+/// </summary>
 public class MenuOptions : MonoBehaviour {
 
 	public GameData gameData;
