@@ -48,7 +48,7 @@ public class EnemyMovement : MonoBehaviour {
 
 	public void MoveTo(Transform target, float moveSpeed)
 	{
-		if (GetDistance(target) < enemy.Distance) return; 
+		if (GetDistance(target) < enemy.AttackDistance) return; 
 
 		float step = moveSpeed * Time.deltaTime;
 		transform.position = Vector3.MoveTowards(transform.position, target.position, step);

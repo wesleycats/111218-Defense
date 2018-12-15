@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+// Doesn't work with multiple different enemies
+
 public class EnemyHandler : MonoBehaviour
 {
 	[SerializeField] bool move = true;

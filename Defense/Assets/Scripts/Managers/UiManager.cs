@@ -10,6 +10,7 @@ public class UiManager : MonoBehaviour {
 
 	public LevelManager levelManager;
 	public GameData gameData;
+	public BaseData baseData;
 	public Base baseClass;
 
 	public Text healthAmount;
@@ -19,8 +20,8 @@ public class UiManager : MonoBehaviour {
 	
 	void Update () {
 		healthAmount.text = baseClass.CurrentHealth.ToString();
-		daysAmount.text = gameData.DaysLeft.ToString();
-		wavesAmount.text = (levelManager.MaxWave - levelManager.CurrentWave).ToString();
-		coinsAmount.text = gameData.Coins.ToString();
+		daysAmount.text = (gameData.LastDay - gameData.CurrentDay).ToString();
+		wavesAmount.text = (levelManager.LastWave - levelManager.CurrentWave).ToString();
+		coinsAmount.text = baseData.Coins.ToString();
 	}
 }

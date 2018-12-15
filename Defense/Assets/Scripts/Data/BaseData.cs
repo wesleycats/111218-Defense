@@ -5,19 +5,27 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BaseData", menuName = "Data/BaseData", order = 1)]
 public class BaseData : ScriptableObject {
 
+	[Header("Current")]
+	[SerializeField] private int coins = 0;
 	[SerializeField] private int maxHealth = 100;
-	[SerializeField] private int damageOutput = 5;
-	[SerializeField] private int attackSpeed = 1;
+	[SerializeField] private float damageOutput = 5;
+	[SerializeField] private float attackSpeed = 1;
+	[SerializeField] private float projectileSpeed = 1;
 
-	private int beginMaxHealth = 100;
-	private int	beginDamageOutput = 5;
-	private int beginAttackSpeed = 1;
+	[Header("Default")]
+	[SerializeField] private int beginMaxHealth;
+	[SerializeField] private float beginDamageOutput;
+	[SerializeField] private float beginAttackSpeed;
+	[SerializeField] private float beginProjectileSpeed;
 
+	public int Coins { get { return coins; } set { coins = value; } }
 	public int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
-	public int DamageOutput { get { return damageOutput; } set { damageOutput = value; } }
-	public int AttackSpeed { get { return attackSpeed; } set { attackSpeed = value; } }
+	public float DamageOutput { get { return damageOutput; } set { damageOutput = value; } }
+	public float AttackSpeed { get { return attackSpeed; } set { attackSpeed = value; } }
+	public float ProjectileSpeed { get { return projectileSpeed; } set { projectileSpeed = value; } }
 
 	public int BeginMaxHealth { get { return beginMaxHealth; } }
-	public int BeginDamageOutput { get { return beginDamageOutput; } }
-	public int BeginAttackSpeed { get { return beginAttackSpeed; } }
+	public float BeginDamageOutput { get { return beginDamageOutput; } }
+	public float BeginAttackSpeed { get { return beginAttackSpeed; } }
+	public float BeginProjectileSpeed { get { return beginProjectileSpeed; } }
 }

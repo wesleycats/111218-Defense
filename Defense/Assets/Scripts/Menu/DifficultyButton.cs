@@ -11,49 +11,66 @@ public class DifficultyButton : MonoBehaviour {
 
 	private int index;
 	private GameData.DifficultyLevel difficulty;
-	
-	void Start() {
-		index = 0;
-		ChangeText(-1, transform.GetChild(0).GetComponent<Text>());
+	private Text textHolder;
+
+	private bool clicked;
+
+	private void Awake()
+	{
+		textHolder = transform.GetChild(0).GetComponent<Text>();
+	}
+
+	void Start()
+	{
+		clicked = false;
+		ChangeText(-1);
+		index = 1;
 	}
 
 	public void IncreaseIndex()
 	{
-		int difficultyAmount = 0;
-
-		index += 1;
-
-		foreach (int i in Enum.GetValues(typeof(GameData.DifficultyLevel)))
-			difficultyAmount += 1;
-
-		if (index >= difficultyAmount)
+		if (clicked)
 		{
-			index = 0;
+			int difficultyAmount = 0;
+
+			index += 1;
+
+			foreach (int i in Enum.GetValues(typeof(GameData.DifficultyLevel)))
+				difficultyAmount += 1;
+
+			if (index >= difficultyAmount)
+			{
+				index = 0;
+			}
+		}
+		else
+		{
+			clicked = true;
 		}
 	}
 
-	public void ChangeText(int currentIndex, Text text)
+	public void ChangeText(int currentIndex)
 	{
 		switch(currentIndex)
 		{
 			case 0:
-				text.text = "Easy";
+				textHolder.text = "Easy";
 				difficulty = GameData.DifficultyLevel.Easy;
 				break;
 			case 1:
-				text.text = "Normal";
+				textHolder.text = "Normal";
 				difficulty = GameData.DifficultyLevel.Normal;
 				break;
 			case 2:
-				text.text = "Hard";
+				textHolder.text = "Hard";
 				difficulty = GameData.DifficultyLevel.Hard;
 				break;
 			case 3:
-				text.text = "Extreme";
+				textHolder.text = "Extreme";
 				difficulty = GameData.DifficultyLevel.Extreme;
 				break;
 			default:
-				text.text = "Difficulty";
+				textHolder.text = "Difficulty";
 				difficulty = GameData.DifficultyLevel.Easy;
 				break;
 		}

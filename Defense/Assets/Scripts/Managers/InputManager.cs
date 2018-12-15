@@ -8,13 +8,21 @@ using UnityEngine;
 /// </summary>
 public class InputManager : MonoBehaviour {
 
-	public enum InputActions { Click };
+	public enum InputActions { Click, Reset };
 	public Action<InputActions> OnInput;
+
+	private bool attackReset = true;
 
 	void Update() {
 		if (Input.GetMouseButton(0))
 		{
 			SendInput(InputActions.Click);
+			attackReset = true;
+		}
+		else if (attackReset)
+		{
+			SendInput(InputActions.Reset);
+			attackReset = false;
 		}
 	}
 

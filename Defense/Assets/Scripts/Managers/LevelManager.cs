@@ -8,37 +8,41 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
 
 	public GameObject dayCompletePanel;
-	public GameObject losePanel;
 	public GameObject pausePanel;
+	public GameObject losePanel;
+	public GameObject winPanel;
 	public GameData gameData;
+	public BaseData baseData;
 	public EnemySpawner spawner;
 	public EnemyManager enemyManager;
 
 	[Tooltip("Wave time in seconds")]
 	[SerializeField] float waveTime;
-	[SerializeField] private int maxWave = 5;
-	[SerializeField] private int minWave = 0;
+	[SerializeField] private int lastWave = 5;
+	[SerializeField] private int firstWave = 0;
 	[SerializeField] private int currentWave;
-	[SerializeField] bool resetCoins;
 	[SerializeField] float waveTimer;
 
 	private int deltaTime;
 	private int coinsBeginAmount;
 
-	void Start () {
-		currentWave = minWave;
-		coinsBeginAmount = gameData.Coins;
+	private List<float> warriorAttributesBuffer;
 
-		if (resetCoins)
-		{
-			gameData.Coins = 0;
-			resetCoins = false;
-		}
+	void Start () {
+		Time.timeScale = 1f;
+		currentWave = firstWave;
+		coinsBeginAmount = baseData.Coins;
+
+		// Fills buffer
+		warriorAttributesBuffer = enemyManager.WarriorAttributes;
 	}
 
 	private void Update()
 	{
-		if (!spawner.Spawn && spawner.Enemies.Count == 0) currentWave = NextWave(currentWave, minWave, maxWave);
+		if (!spawner.Spawn && spawner.Enemies.Count == 0 && currentWave < lastWave)
+		{
+			currentWave = NextWave(currentWave, firstWave, lastWave);
+		}
 
 		if (!spawner.Spawn) return;
 
@@ -49,16 +53,16 @@ public class LevelManager : MonoBehaviour {
 		if (deltaTime % waveTime == 0 && deltaTime != 0) spawner.Spawn = false;
 	}
 
-	public int NextWave(int currentWave, int minWave, int maxWave)
+	public int NextWave(int currentWave, int firstWave, int lastWave)
 	{
 		currentWave += 1;
 		waveTimer = 0;
 
-		if (currentWave > maxWave)
+		if (currentWave >= lastWave)
 		{
-			DayComplete();
+			gameData.CurrentDay = DayComplete();
 
-			return minWave;
+			return currentWave;
 		}
 
 		spawner.Spawn = true;
@@ -68,14 +72,31 @@ public class LevelManager : MonoBehaviour {
 		return currentWave;
 	}
 
-	public void DayComplete()
+	public int DayComplete()
 	{
+		Time.timeScale = 0;
+		gameData.CurrentDay += 1;
+		
+		if (gameData.CurrentDay >= gameData.LastDay)
+		{
+			winPanel.SetActive(true);
+			return gameData.CurrentDay;
+		}
+
+		enemyManager.WarriorAttributes = warriorAttributesBuffer;
 		enemyManager.IncreaseDifficulty(false, false, true);
 		dayCompletePanel.SetActive(true);
+
+		return gameData.CurrentDay;
+	}
+
+	public void Defeated()
+	{
 		Time.timeScale = 0;
+		losePanel.SetActive(true);
 	}
 	
-	public int MaxWave { get { return maxWave; } }
+	public int LastWave { get { return lastWave; } }
 	public int CurrentWave { get { return currentWave; } }
 	public int CoinsBeginAmount { get { return coinsBeginAmount; } }
 }

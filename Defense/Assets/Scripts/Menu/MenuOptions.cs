@@ -11,6 +11,7 @@ public class MenuOptions : MonoBehaviour {
 
 	public GameData gameData;
 	public BaseData baseData;
+	public UpgradeData upgradeData;
 
 	public void Pause(GameObject pausePanel)
 	{
@@ -20,7 +21,7 @@ public class MenuOptions : MonoBehaviour {
 
 	public void Resume(GameObject pausePanel)
 	{
-		pausePanel.SetActive(true);
+		pausePanel.SetActive(false);
 		Time.timeScale = 1f;
 	}
 
@@ -32,39 +33,29 @@ public class MenuOptions : MonoBehaviour {
 		if (name == "MainMenu")
 		{
 			LevelManager levelManager = FindObjectOfType<LevelManager>();
-			gameData.Coins = levelManager.CoinsBeginAmount;
+			baseData.Coins = levelManager.CoinsBeginAmount;
 		}
 	}
 
 	public void ChangeDifficulty(DifficultyButton button)
 	{
-		if (gameData.DaysLeft != gameData.BeginDaysLeft) return;
+		if (gameData.CurrentDay != 0) return;
 		button.IncreaseIndex();
-		button.ChangeText(button.CurrentIndex, button.transform.GetChild(0).GetComponent<Text>());
+		button.ChangeText(button.CurrentIndex);
 		gameData.Difficulty = button.Difficulty;
-	}
-
-	public void NextDay(string name)
-	{
-		gameData.DaysLeft -= 1;
-		SceneManager.LoadScene(name);
 	}
 
 	public void Retry()
 	{
 		LevelManager levelManager = FindObjectOfType<LevelManager>();
-		gameData.Coins = levelManager.CoinsBeginAmount;
+		baseData.Coins = levelManager.CoinsBeginAmount;
 
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 	public void Quit()
 	{
-		gameData.Coins = 0;
-		gameData.DaysLeft = gameData.BeginDaysLeft;
-		baseData.MaxHealth = baseData.BeginMaxHealth;
-		baseData.DamageOutput = baseData.BeginDamageOutput;
-		baseData.AttackSpeed = baseData.BeginAttackSpeed;
+		ResetGame();
 
 #if UNITY_EDITOR
 		UnityEditor.EditorApplication.isPlaying = false;
@@ -73,5 +64,23 @@ public class MenuOptions : MonoBehaviour {
 #else
 		Application.Quit()
 #endif
+	}
+
+	public void ResetGame()
+	{
+		gameData.CurrentDay = 0;
+
+		baseData.Coins = 0;
+		baseData.MaxHealth = baseData.BeginMaxHealth;
+		baseData.DamageOutput = baseData.BeginDamageOutput;
+		baseData.AttackSpeed = baseData.BeginAttackSpeed;
+		baseData.ProjectileSpeed = baseData.BeginProjectileSpeed;
+
+		upgradeData.HpUpgradeCost = upgradeData.BeginHpUpgradeCost;
+		upgradeData.HpUpgradeAmount = upgradeData.BeginHpUpgradeAmount;
+		upgradeData.DamageUpgradeCost = upgradeData.BeginDamageUpgradeCost;
+		upgradeData.DamageUpgradeAmount = upgradeData.BeginDamageUpgradeAmount;
+		upgradeData.AttackSpeedUpgradeCost = upgradeData.BeginAttackSpeedUpgradeCost;
+		upgradeData.AttackSpeedUpgradeAmount = upgradeData.BeginAttackSpeedUpgradeAmount;
 	}
 }

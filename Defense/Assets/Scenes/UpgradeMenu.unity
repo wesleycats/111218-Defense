@@ -1345,7 +1345,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2014601551}
-        m_MethodName: NextDay
+        m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1850,7 +1850,7 @@ GameObject:
   - component: {fileID: 2014601551}
   - component: {fileID: 2014601553}
   m_Layer: 0
-  m_Name: MenuOptions
+  m_Name: UpgradeMenuManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1869,6 +1869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: bac578109ee20614ea26957fa2fc99a7, type: 2}
   baseData: {fileID: 11400000, guid: c8097c77333a04845be291daa5a93ea4, type: 2}
+  upgradeData: {fileID: 11400000, guid: 99043c8576d6d004eaa2ca39038ab38e, type: 2}
 --- !u!4 &2014601552
 Transform:
   m_ObjectHideFlags: 0
@@ -1895,6 +1896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseData: {fileID: 11400000, guid: c8097c77333a04845be291daa5a93ea4, type: 2}
   gameData: {fileID: 11400000, guid: bac578109ee20614ea26957fa2fc99a7, type: 2}
+  upgradeData: {fileID: 11400000, guid: 99043c8576d6d004eaa2ca39038ab38e, type: 2}
   hp: {fileID: 538346390}
   hpCost: {fileID: 1174532311}
   damage: {fileID: 1197559914}
@@ -1902,12 +1904,9 @@ MonoBehaviour:
   attackSpeed: {fileID: 361650557}
   attackSpeedCost: {fileID: 1003516652}
   coinsAmount: {fileID: 1870891298}
-  hpUpgrade: 50
-  hpUpgradeCost: 50
-  damageUpgrade: 5
-  damageUpgradeCost: 50
-  attackSpeedUpgrade: 1
-  attackSpeedUpgradeCost: 50
+  hpUpgradeIncremental: 1.2
+  damageUpgradeIncremental: 1.2
+  attackSpeedUpgradeIncremental: 1.2
 --- !u!1 &2054846672
 GameObject:
   m_ObjectHideFlags: 0

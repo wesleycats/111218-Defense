@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e3a506b21ad0e4ca41c4072b67ce36, type: 3}
+  m_Name: UpgradeData
+  m_EditorClassIdentifier: 
+  hpUpgradeCost: 50
+  hpUpgradeAmount: 50
+  damageUpgradeCost: 50
+  damageUpgradeAmount: 5
+  attackSpeedUpgradeCost: 50
+  attackSpeedUpgradeAmount: 1
+  beginHpUpgradeCost: 50
+  beginHpUpgradeAmount: 50
+  beginDamageUpgradeCost: 50
+  beginDamageUpgradeAmount: 5
+  beginAttackSpeedUpgradeCost: 50
+  beginAttackSpeedUpgradeAmount: 1
+  hpUpgradeIncremental: 2.5
+  damageUpgradeIncremental: 3
+  attackSpeedUpgradeIncremental: 3

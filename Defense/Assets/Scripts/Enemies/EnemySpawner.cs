@@ -44,11 +44,11 @@ public class EnemySpawner : MonoBehaviour {
 		switch (type)
 		{
 			case EnemyType.Warrior:
-				enemyPrefab.SetAttributes(type, manager.WarriorAttributes[0], manager.WarriorAttributes[1], manager.WarriorAttributes[2], manager.WarriorAttributes[3], GetClosest(targets));
+				enemyPrefab.SetAttributes(type, manager.WarriorAttributes[0], manager.WarriorAttributes[1], manager.WarriorAttributes[2], manager.WarriorAttributes[3], manager.WarriorAttributes[4], manager.WarriorAttributes[5], GetClosest(targets));
 
 				break;
 			default:
-				enemyPrefab.SetAttributes(type, manager.WarriorAttributes[0], manager.WarriorAttributes[1], manager.WarriorAttributes[2], manager.WarriorAttributes[3], GetClosest(targets));
+				enemyPrefab.SetAttributes(type, manager.WarriorAttributes[0], manager.WarriorAttributes[1], manager.WarriorAttributes[2], manager.WarriorAttributes[3], manager.WarriorAttributes[4], manager.WarriorAttributes[5], GetClosest(targets));
 
 				break;
 		}
