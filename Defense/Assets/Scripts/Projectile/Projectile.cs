@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour {
 
 	private float moveSpeed = 1f;
 	private float damage = 1f;
+	private string shooterTag;
 	private Rigidbody2D rb;
 
 	private void Awake()
@@ -27,6 +28,15 @@ public class Projectile : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		rb.velocity = transform.up * moveSpeed;
+
+		if (Camera.main.WorldToViewportPoint(transform.position).y > 1 || Camera.main.WorldToViewportPoint(transform.position).x < 0 || Camera.main.WorldToViewportPoint(transform.position).x > 1) Destroy(gameObject);
+	}
+
+	public void SetProjectileAttributes(Projectile projectile, float damage, float speed, string shooterTag)
+	{
+		this.damage = damage;
+		this.moveSpeed = speed;
+		this.shooterTag = shooterTag;
 	}
 
 	IEnumerator DestroyAfter(float seconds)
@@ -37,4 +47,5 @@ public class Projectile : MonoBehaviour {
 
 	public float MoveSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
 	public float Damage { get { return damage; } set { damage = value; } }
+	public string ShooterTag { get { return shooterTag; } set { shooterTag = value; } }
 }

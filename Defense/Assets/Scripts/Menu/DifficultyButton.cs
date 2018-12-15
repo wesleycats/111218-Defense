@@ -13,8 +13,6 @@ public class DifficultyButton : MonoBehaviour {
 	private GameData.DifficultyLevel difficulty;
 	private Text textHolder;
 
-	private bool clicked;
-
 	private void Awake()
 	{
 		textHolder = transform.GetChild(0).GetComponent<Text>();
@@ -22,31 +20,24 @@ public class DifficultyButton : MonoBehaviour {
 
 	void Start()
 	{
-		clicked = false;
 		ChangeText(-1);
 		index = 1;
 	}
 
 	public void IncreaseIndex()
 	{
-		if (clicked)
+		int difficultyAmount = 0;
+
+		index += 1;
+
+		foreach (int i in Enum.GetValues(typeof(GameData.DifficultyLevel)))
+			difficultyAmount += 1;
+
+		if (index >= difficultyAmount)
 		{
-			int difficultyAmount = 0;
-
-			index += 1;
-
-			foreach (int i in Enum.GetValues(typeof(GameData.DifficultyLevel)))
-				difficultyAmount += 1;
-
-			if (index >= difficultyAmount)
-			{
-				index = 0;
-			}
+			index = 0;
 		}
-		else
-		{
-			clicked = true;
-		}
+		
 	}
 
 	public void ChangeText(int currentIndex)

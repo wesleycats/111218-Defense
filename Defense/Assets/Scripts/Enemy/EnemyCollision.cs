@@ -22,24 +22,20 @@ public class EnemyCollision : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D c)
 	{
-		if (c.transform.tag == "Arrow")
+		if (c.tag == "Arrow")
 		{
-			Destroy(c.gameObject);
+			if (c.GetComponent<Projectile>().ShooterTag == transform.tag) return;
 
+			Destroy(c.gameObject);
 			StartCoroutine(HitAnimation());
 			enemy.DecreaseHealth(baseClass.DamageOutput);
 
 			if (enemy.Health <= 0)
 			{
 				FindObjectOfType<EnemySpawner>().Enemies.Remove(this.gameObject.GetComponent<Enemy>());
-				enemyManager.AddCoins((int)enemyManager.WarriorAttributes[enemyManager.CoinIndex]);
+				enemyManager.AddCoins((int)enemyManager.WarriorStats[enemyManager.CoinIndex]);
 				Destroy(gameObject);
 			}
-		}
-
-		if (c.transform.tag == "Base")
-		{
-			StartCoroutine(GetComponent<EnemyAttack>().StartAttack());
 		}
 	}
 

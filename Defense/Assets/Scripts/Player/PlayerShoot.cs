@@ -9,25 +9,28 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour {
 
 	public Projectile projectilePrefab;
-	public Transform spawnPosition;
+	public Transform weapon;
 	public InputManager input;
 	public BaseData baseData;
-	public Base baseClass;
 	
-	private float attackTimer = 0f;
+	[SerializeField] private float attackTimer = 0f;
+	[SerializeField] private float lastShotTimer = 0f;
+	private float cooldown = 0f;
 	private int fps = 60;
 
 	void Start () {
 		input.OnInput += Shoot;
 		input.OnInput += ResetAttackTimer;
+
+		cooldown = fps / baseData.AttackSpeed;
 	}
-	
+
 	void Update ()
 	{
-		if (Time.timeScale > 0)
-		{
-			LookAtMouse();
-		}
+		if (Time.timeScale < 1) return;
+
+		LookAtMouse();
+		lastShotTimer += 1;
 	}
 
 	public void LookAtMouse()
@@ -42,35 +45,30 @@ public class PlayerShoot : MonoBehaviour {
 	{
 		if (action != InputManager.InputActions.Click) return;
 
-		if (attackTimer % (fps / baseClass.AttackSpeed) == 0 || attackTimer == 0)
+		if (attackTimer % cooldown == 0 || lastShotTimer >= cooldown)
 		{
-			Vector3 spawnLocation = spawnPosition.transform.position;
-
-			Projectile projectile = Instantiate(projectilePrefab, spawnPosition.position, spawnPosition.rotation) as Projectile;
+			Projectile projectile = Instantiate(projectilePrefab, weapon.position, weapon.rotation) as Projectile;
 			projectile.transform.rotation = new Quaternion(projectile.transform.rotation.x, projectile.transform.rotation.y, projectile.transform.rotation.z, projectile.transform.rotation.w);
-			projectile.MoveSpeed = baseClass.ProjectileSpeed;
 
-			SetProjectileAttributes(projectile, baseClass.DamageOutput, baseClass.ProjectileSpeed);
-		}
+			projectile.SetProjectileAttributes(projectile, baseData.DamageOutput, baseData.ProjectileSpeed, transform.tag);
 
-		if (attackTimer >= 60)
-		{
+			lastShotTimer = 0;
 			ResetAttackTimer(InputManager.InputActions.Reset);
 		}
-		
-		attackTimer += 1f;
-	}
 
-	private void SetProjectileAttributes(Projectile projectile, float damage, float speed)
-	{
-		projectile.Damage = damage;
-		projectile.MoveSpeed = speed;
+		attackTimer += 1f;
 	}
 
 	public void ResetAttackTimer(InputManager.InputActions action)
 	{
 		if (action != InputManager.InputActions.Reset) return;
 
-		attackTimer = 0;
+		attackTimer = 1f;
+	}
+
+	private IEnumerator SinceLastShot()
+	{
+		lastShotTimer += 1;
+		yield return new WaitForSeconds(1);
 	}
 }

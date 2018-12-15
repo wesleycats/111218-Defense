@@ -6,19 +6,17 @@ using UnityEngine;
 /// Handles the overall data and the logic of the difficulty of the enemies
 /// </summary>
 public class EnemyManager : MonoBehaviour {
-	
+
 	public GameData gameData;
 	public BaseData baseData;
 
 	//TODO change all data to scriptable EnemyData
 
 	[Header("Warrior Stats")]
-	[Tooltip("[0]=health, [1]=damage, [2]=move speed, [3]=attack speed, [4]=attack distance, [5]=coin value")]
-	[SerializeField] private List<float> warriorAttributes = new List<float>();
-
-	[Header("Archer Stats")]
-	[Tooltip("[0]=health, [1]=damage, [2]=move speed, [3]=attack speed, [4]=attack distance, [5]=coin value")]
-	[SerializeField] private List<float> archerAttributes = new List<float>();
+	[Tooltip("[0]=health, [1]=damage, [2]=move speed, [3]=attack speed, [4]=attack distance, [5]=projectile speed, [6]=coin value")]
+	[SerializeField] private List<float> warriorStats = new List<float>();
+	[Tooltip("[0]=health, [1]=damage, [2]=move speed, [3]=attack speed, [4]=attack distance, [5]=projectile speed, [6]=coin value")]
+	[SerializeField] private List<float> archerStats = new List<float>();
 
 	[Header("Precentages of increased difficulty")]
 	[Tooltip("[0]=Easy, [1]=Normal, [2]=Hard, [3]=Extreme")]
@@ -31,22 +29,29 @@ public class EnemyManager : MonoBehaviour {
 	[Tooltip("[0]=Easy, [1]=Normal, [2]=Hard, [3]=Extreme")]
 	[SerializeField] private List<float> difficultyIncreaser = new List<float>();
 
+	[Header("Enemy colors")]
+	[Tooltip("[0]=Warrior, [1]=Archer")]
+	[SerializeField] private List<Color> enemyColors = new List<Color>();
+
 	private int distanceIndex = 4;
 	private int coinIndex = 5;
 
+	private void Awake()
+	{
+		IncreaseDifficulty(true, false, true);
+	}
+
 	private void Start()
 	{
-		if (warriorAttributes.Count < 1)
+		if (warriorStats.Count < 1)
 		{
-			warriorAttributes.Add(5f);
-			warriorAttributes.Add(5f);
-			warriorAttributes.Add(1f);
-			warriorAttributes.Add(1.7f);
-			warriorAttributes.Add(1f);
-			warriorAttributes.Add(5f);
+			warriorStats.Add(5f);
+			warriorStats.Add(5f);
+			warriorStats.Add(1f);
+			warriorStats.Add(1.7f);
+			warriorStats.Add(1f);
+			warriorStats.Add(5f);
 		}
-
-		IncreaseDifficulty(true, false, true);
 	}
 
 	public void AddCoins(int amount)
@@ -244,12 +249,14 @@ public class EnemyManager : MonoBehaviour {
 	/// <param name="day"></param>
 	public void IncreaseDifficulty(bool diff, bool wave, bool day)
 	{
-		IncreaseDifficulty(warriorAttributes, diff, wave, day);
+		IncreaseDifficulty(warriorStats, diff, wave, day);
+		IncreaseDifficulty(archerStats, diff, wave, day);
 
 		//TODO increase for all types
 	}
 
-	public List<float> WarriorAttributes { get { return warriorAttributes; } set { warriorAttributes = value; } }
-	public List<float> ArcherAttributes { get { return archerAttributes; } set { archerAttributes = value; } }
+	public List<float> WarriorStats { get { return warriorStats; } set { warriorStats = value; } }
+	public List<float> ArcherStats { get { return archerStats; } set { archerStats = value; } }
+	public List<Color> EnemyColors { get { return enemyColors; } set { enemyColors = value; } }
 	public int CoinIndex { get { return coinIndex; } }
 }

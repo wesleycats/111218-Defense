@@ -19,7 +19,7 @@ public class UiManager : MonoBehaviour {
 	public Text coinsAmount;
 	
 	void Update () {
-		healthAmount.text = baseClass.CurrentHealth.ToString();
+		healthAmount.text = Mathf.CeilToInt(baseClass.CurrentHealth).ToString();
 		daysAmount.text = (gameData.LastDay - gameData.CurrentDay).ToString();
 		wavesAmount.text = (levelManager.LastWave - levelManager.CurrentWave).ToString();
 		coinsAmount.text = baseData.Coins.ToString();

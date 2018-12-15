@@ -8,6 +8,7 @@ TagManager:
   - Arrow
   - Base
   - Section
+  - Enemy
   layers:
   - Default
   - TransparentFX

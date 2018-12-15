@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour {
 	private int deltaTime;
 	private int coinsBeginAmount;
 
-	private List<float> warriorAttributesBuffer;
+	private List<float> warriorStatsBuffer;
 
 	void Start () {
 		Time.timeScale = 1f;
@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour {
 		coinsBeginAmount = baseData.Coins;
 
 		// Fills buffer
-		warriorAttributesBuffer = enemyManager.WarriorAttributes;
+		warriorStatsBuffer = enemyManager.WarriorStats;
 	}
 
 	private void Update()
@@ -83,7 +83,7 @@ public class LevelManager : MonoBehaviour {
 			return gameData.CurrentDay;
 		}
 
-		enemyManager.WarriorAttributes = warriorAttributesBuffer;
+		enemyManager.WarriorStats = warriorStatsBuffer;
 		enemyManager.IncreaseDifficulty(false, false, true);
 		dayCompletePanel.SetActive(true);
 

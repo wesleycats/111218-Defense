@@ -8,56 +8,39 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour {
 	
-	//private EnemyHandler handler;
 	private Enemy enemy;
 	private Transform target;
 	private float speed;
 
 	private void Awake()
 	{
-		//handler = FindObjectOfType<EnemyHandler>();
 		enemy = GetComponent<Enemy>();
 	}
 
 	private void Start()
 	{
-		//handler.enemyAction += Move;
 		target = enemy.Target;
-		speed = enemy.Speed;
+		speed = enemy.MoveSpeed;
 	}
 
 	private void Update()
 	{
 		MoveTo(target, speed);
+		LookAt(target);
 	}
-
-	/*public void Move(EnemyAction action)
+	
+	public void LookAt(Transform target)
 	{
-		if (action == EnemyAction.Move)
-		{
-			MoveTo(target, speed);
-		}
-	}*/
-
-	public void LookAt(Transform target, bool look)
-	{
-		Vector3 direction = target.transform.position - Camera.main.WorldToScreenPoint(transform.position);
+		Vector3 direction = target.transform.position - transform.position;
 		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 		transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 	}
 
 	public void MoveTo(Transform target, float moveSpeed)
 	{
-		if (GetDistance(target) < enemy.AttackDistance) return; 
+		if (enemy.GetDistance(target) <= enemy.AttackDistance) return; 
 
 		float step = moveSpeed * Time.deltaTime;
 		transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-	}
-
-	public float GetDistance(Transform t)
-	{
-		float distance = Vector3.Distance(t.position, transform.position);
-
-		return distance;
 	}
 }

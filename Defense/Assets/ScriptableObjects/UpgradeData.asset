@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Name: UpgradeData
   m_EditorClassIdentifier: 
   hpUpgradeCost: 50
-  hpUpgradeAmount: 50
+  hpUpgradeAmount: 25
   damageUpgradeCost: 50
-  damageUpgradeAmount: 5
+  damageUpgradeAmount: 1
   attackSpeedUpgradeCost: 50
   attackSpeedUpgradeAmount: 1
   beginHpUpgradeCost: 50
-  beginHpUpgradeAmount: 50
+  beginHpUpgradeAmount: 25
   beginDamageUpgradeCost: 50
-  beginDamageUpgradeAmount: 5
+  beginDamageUpgradeAmount: 1
   beginAttackSpeedUpgradeCost: 50
   beginAttackSpeedUpgradeAmount: 1
-  hpUpgradeIncremental: 2.5
-  damageUpgradeIncremental: 3
-  attackSpeedUpgradeIncremental: 3
+  hpUpgradeIncremental: 2
+  damageUpgradeIncremental: 2
+  attackSpeedUpgradeIncremental: 2

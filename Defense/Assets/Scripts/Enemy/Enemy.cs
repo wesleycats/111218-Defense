@@ -5,32 +5,34 @@ using UnityEngine;
 /// <summary>
 /// Stores all the data of the enemy and the handles the logic of editing that data
 /// </summary>
-public enum EnemyType { Warrior } //, Archer, ArmoredArcher, Giant, Boss }
+public enum EnemyType { Warrior, Archer }//, ArmoredArcher, Giant, Boss }
 public class Enemy : MonoBehaviour {
 
 	[SerializeField] private EnemyType type;
 	[SerializeField] private Transform target;
 
-	// Attributes
+	// Stats
 	[SerializeField] private float health;
 	[SerializeField] private float damage;
-	[SerializeField] private float speed;
+	[SerializeField] private float mSpeed;
 	[SerializeField] private float aSpeed;
+	[SerializeField] private float pSpeed;
 	[SerializeField] private float aDistance;
 	[SerializeField] private float cValue;
-
-	//TODO create attackspeed
-
-	public void SetAttributes(EnemyType enemyType, float healthPoints, float damageOutput, float moveSpeed, float attackSpeed, float attackDistance, float coinValue, Transform enemyTarget)
+	[SerializeField] private Color color;
+	
+	public void SetStats(EnemyType enemyType, float healthPoints, float damageOutput, float moveSpeed, float attackSpeed, float attackDistance, float coinValue, Transform enemyTarget, Color color, float projectileSpeed)
 	{
 		type = enemyType;
 		health = healthPoints;
 		damage = damageOutput;
-		speed = moveSpeed;
+		mSpeed = moveSpeed;
 		aSpeed = attackSpeed;
+		pSpeed = projectileSpeed;
 		aDistance = attackDistance;
 		cValue = coinValue;
 		target = enemyTarget;
+		this.color = color;
 	}
 
 	public void DecreaseHealth(float amount)
@@ -38,13 +40,21 @@ public class Enemy : MonoBehaviour {
 		health -= amount;
 	}
 
-	// TODO clean up all getter/setters
+	public float GetDistance(Transform t)
+	{
+		float distance = Vector3.Distance(t.position, transform.position);
+
+		return distance;
+	}
+
 	public EnemyType Type { get { return type; } }
 	public float Health { get { return health; } }
 	public float Damage { get { return damage; } }
-	public float Speed { get { return speed; } }
+	public float MoveSpeed { get { return mSpeed; } }
 	public float AttackSpeed { get { return aSpeed; } }
+	public float ProjectileSpeed { get { return pSpeed; } }
 	public float AttackDistance { get { return aDistance; } }
 	public float CoinValue { get { return cValue; } }
 	public Transform Target { get { return target; } }
+	public Color Color { get { return color; } }
 }
