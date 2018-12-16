@@ -1,0 +1,51 @@
+Defense
+Version Log Pre Alhpa 0.1
+
+Notes:
+- Change new game option in main menu to a reset option, so the player can assign a new difficulty if the first day is already completed.
+
+Features:
+- Different enemy types
+   - Warrior
+      - Melee
+      - Normal hp
+      - Low damage
+      - Normal movespeed
+      - Normal attackspeed
+      - Close attackrange
+
+   - Archer
+      - Ranged
+      - Low hp
+      - Normal Damage
+      - Normal movespeed
+      - Normal attackspeed
+      - Normal / Far attackrange
+
+- Upgradable base
+    Upgrades include
+       - HP upgrade
+       - Damage
+       - Attack speed 
+
+- Interactable defense
+   - Shoot by clicking
+   - Upgrade base after each day
+
+- Win & lose condition
+   - Win by completing all waves and days
+   - Lose by losing all your hp
+
+- Random spawner
+   - Spawn area is depended on spawn field object
+   - Enemies spawn between a random amount of given time
+   - Enemy type is randomized
+
+- Difficulty System
+   - Difficulty increases per wave & day
+   - A general difficulty can be assigned by the player in the main menu
+
+- Main Menu
+   - Able to continue a game if the player has completed at least 1 day
+   - If player is going to main menu and then resume the game, the wave counter resets
+   - Player can change difficulty, if first day has not been completed yet
