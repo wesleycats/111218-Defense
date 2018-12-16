@@ -108,16 +108,18 @@ public class EnemySpawner : MonoBehaviour {
 
 		int index = 0;
 		index = UnityEngine.Random.Range(0, typeAmount * (randomTypePercentage / typeAmount));
-		
-		//TODO create customizable random spawner
+
+		//TODO create a good working customizable random spawner
+
+		spawnChance.Sort();
 
 		if (index < spawnChance[0])
 		{
-			return EnemyType.Warrior;
+			return EnemyType.Archer;
 		}
 		else if (index < spawnChance[1])
 		{
-			return EnemyType.Archer;
+			return EnemyType.Warrior;
 		}
 
 		return EnemyType.Warrior;
