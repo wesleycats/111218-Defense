@@ -911,7 +911,7 @@ MonoBehaviour:
   - 1.4
   difficultyIncreaser:
   - 0.8
-  - 1
+  - 0.9
   - 1.2
   - 1.3
   enemyColors:
