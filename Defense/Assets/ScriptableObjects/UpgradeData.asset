@@ -25,4 +25,4 @@ MonoBehaviour:
   beginAttackSpeedUpgradeAmount: 1
   hpUpgradeIncremental: 2
   damageUpgradeIncremental: 2
-  attackSpeedUpgradeIncremental: 2
+  attackSpeedUpgradeIncremental: 3

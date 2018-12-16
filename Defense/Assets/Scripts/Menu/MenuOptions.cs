@@ -60,9 +60,9 @@ public class MenuOptions : MonoBehaviour {
 #if UNITY_EDITOR
 		UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_WEBPLAYER
-		// Application.OpenURL(webplayerQuitURL);
+		Application.OpenURL(webplayerQuitURL);
 #else
-		Application.Quit()
+		Application.Quit();
 #endif
 	}
 

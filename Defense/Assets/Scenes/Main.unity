@@ -757,8 +757,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 163793791}
-  - component: {fileID: 163793792}
   - component: {fileID: 163793795}
+  - component: {fileID: 163793792}
   - component: {fileID: 163793794}
   m_Layer: 0
   m_Name: Game Manager
@@ -859,6 +859,7 @@ MonoBehaviour:
     type: 2}
   canvas: {fileID: 1820775651}
   cam: {fileID: 519420031}
+  spawnFieldScale: {x: 9, y: 1}
   spawnTime: 1
   targets:
   - {fileID: 72372041}
@@ -868,6 +869,7 @@ MonoBehaviour:
   spawnChance:
   - 80
   - 20
+  unitSpawnAmount: 0500000006000000070000000800000009000000
 --- !u!114 &172151632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1704,7 +1706,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3710,7 +3712,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -220, y: 115}
+  m_AnchoredPosition: {x: -150, y: 115}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1332266031
@@ -3737,7 +3739,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1332266031}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: -3.5, z: 0}
+  m_LocalPosition: {x: -2, y: -5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1944322950}
@@ -4086,7 +4088,6 @@ MonoBehaviour:
   lastWave: 5
   firstWave: 0
   currentWave: 0
-  waveTimer: 0
 --- !u!4 &1523662653
 Transform:
   m_ObjectHideFlags: 0
@@ -4924,8 +4925,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1870937385}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.5, z: 0}
-  m_LocalScale: {x: 6, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 10.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8

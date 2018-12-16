@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour {
 	public Canvas canvas;
 	public Camera cam;
 
+	[SerializeField] private Vector2 spawnFieldScale = new Vector2(1,1);
 	[SerializeField] private float spawnTime;
 	[SerializeField] private List<Transform> targets = new List<Transform>();
 	
@@ -28,10 +29,27 @@ public class EnemySpawner : MonoBehaviour {
 	[Tooltip("[0]=Warrior, [1]=Archer")]
 	[SerializeField] private List<float> spawnChance;
 
+	[Header("Unit spawn amount per wave")]
+	//Customizable for multiple enemies
+	//[SerializeField] private List<List<int>> unitSpawnAmount;
+	[SerializeField] private List<int> unitSpawnAmount;
+
 	// For customizable spawning randomness
 	private int randomTypePercentage = 100;
 
-	void Start () {
+#pragma warning disable
+	SpriteRenderer renderer;
+#pragma warning restore
+
+	private void Awake()
+	{
+		renderer = spawnField.GetComponent<SpriteRenderer>();
+	}
+
+	void Start ()
+	{
+		InitSpawnField();
+
 		spawn = true;
 		enemies.Clear();
 		StartCoroutine(SpawnEnemy(spawnTime, spawnField));
@@ -73,25 +91,11 @@ public class EnemySpawner : MonoBehaviour {
 
 	public Vector2 GetRandomSpawnPos(GameObject spawnField)
 	{
-		Vector2 spawnPos = new Vector2(0,0);
-
-		// TODO get position from playfield
-
-		float pixelRatio = (cam.orthographicSize * 2) / cam.pixelHeight;
-		float orthoWidthSizeRatio = (cam.orthographicSize * 2) / spawnField.GetComponent<SpriteRenderer>().sprite.bounds.max.x;
-		SpriteRenderer renderer = spawnField.GetComponent<SpriteRenderer>();
-
-		spawnField.transform.localScale = new Vector3(orthoWidthSizeRatio, spawnField.transform.localScale.y);
-	
-		spawnField.transform.position = new Vector2(cam.ScreenToWorldPoint(Camera.main.transform.position).x * pixelRatio,
-																				(cam.pixelHeight * pixelRatio) / 2 - renderer.sprite.bounds.min.y); //+ cam.ScreenToWorldPoint(Camera.main.transform.position).y);
-
-		float randomX = UnityEngine.Random.Range(renderer.sprite.bounds.min.x * spawnField.transform.localScale.x, renderer.sprite.bounds.max.x * spawnField.transform.localScale.x);
-		float randomY = UnityEngine.Random.Range(renderer.sprite.bounds.min.y * spawnField.transform.localScale.y + spawnField.transform.position.y, renderer.sprite.bounds.max.y * spawnField.transform.localScale.y + spawnField.transform.position.y);
+		Vector2 spawnPos = new Vector2(0, 0);
 
 		// Manual spawn position
-		//float randomX = UnityEngine.Random.Range(spawnCoords[0], spawnCoords[1]);
-		//float randomY = UnityEngine.Random.Range(spawnCoords[2], spawnCoords[3]);
+		float randomX = UnityEngine.Random.Range(spawnField.transform.position.x - renderer.bounds.extents.x, spawnField.transform.position.x + renderer.bounds.extents.x);
+		float randomY = UnityEngine.Random.Range(spawnField.transform.position.y - renderer.bounds.extents.y, spawnField.transform.position.y + renderer.bounds.extents.y);
 
 		spawnPos.x = randomX;
 		spawnPos.y = randomY;
@@ -147,8 +151,17 @@ public class EnemySpawner : MonoBehaviour {
 		return closest;
 	}
 
-public bool Spawn { get { return spawn; } set { spawn = value; } }
+	private void InitSpawnField()
+	{
+		Vector3 cameraWorldSpaceEdges = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane));
+		spawnField.transform.localScale = spawnFieldScale;
+		spawnField.transform.position = new Vector2(cam.transform.position.x, cameraWorldSpaceEdges.y + renderer.bounds.extents.y);
+	}
+
 public List<Enemy> Enemies { get { return enemies; } }
+//public List<List<int>> UnitSpawnAmount { get { return unitSpawnAmount; } }
+public List<int> UnitSpawnAmount { get { return unitSpawnAmount; } }
+public bool Spawn { get { return spawn; } set { spawn = value; } }
 public float SpawnTime { get { return spawnTime; } }
 
 // TEMP

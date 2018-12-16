@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour {
 	[SerializeField] private int lastWave = 5;
 	[SerializeField] private int firstWave = 0;
 	[SerializeField] private int currentWave;
-	[SerializeField] float waveTimer;
+	//[SerializeField] float waveTimer;
 
 	private int deltaTime;
 	private int coinsBeginAmount;
@@ -46,17 +46,21 @@ public class LevelManager : MonoBehaviour {
 
 		if (!spawner.Spawn) return;
 
-		waveTimer += 1 * Time.deltaTime;
+		if (IsAllUnitsSpawned(spawner.Enemies.Count, spawner.UnitSpawnAmount[currentWave]))
+		{
+			spawner.Spawn = false;
+		}
 
-		deltaTime = (int)waveTimer;
-
-		if (deltaTime % waveTime == 0 && deltaTime != 0) spawner.Spawn = false;
+		// Waves with time
+		//waveTimer += 1 * Time.deltaTime;
+		//deltaTime = (int)waveTimer;
+		//if (deltaTime % waveTime == 0 && deltaTime != 0) spawner.Spawn = false;
 	}
 
 	public int NextWave(int currentWave, int firstWave, int lastWave)
 	{
 		currentWave += 1;
-		waveTimer = 0;
+		//waveTimer = 0;
 
 		if (currentWave >= lastWave)
 		{
@@ -94,6 +98,11 @@ public class LevelManager : MonoBehaviour {
 	{
 		Time.timeScale = 0;
 		losePanel.SetActive(true);
+	}
+
+	public bool IsAllUnitsSpawned(int unitsSpawned, int unitsSpawnAmount)
+	{
+		return unitsSpawned >= unitsSpawnAmount;
 	}
 	
 	public int LastWave { get { return lastWave; } }
