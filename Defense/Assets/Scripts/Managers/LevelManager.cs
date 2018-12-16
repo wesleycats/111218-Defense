@@ -42,11 +42,12 @@ public class LevelManager : MonoBehaviour {
 		if (!spawner.Spawn && spawner.Enemies.Count == 0 && currentWave < lastWave)
 		{
 			currentWave = NextWave(currentWave, firstWave, lastWave);
+			spawner.ResetUnitsSpawned();
 		}
 
 		if (!spawner.Spawn) return;
 
-		if (IsAllUnitsSpawned(spawner.Enemies.Count, spawner.UnitSpawnAmount[currentWave]))
+		if (IsAllUnitsSpawned(spawner.UnitsSpawned, spawner.UnitSpawnAmount[currentWave]))
 		{
 			spawner.Spawn = false;
 		}

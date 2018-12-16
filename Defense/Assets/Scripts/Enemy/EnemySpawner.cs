@@ -37,6 +37,8 @@ public class EnemySpawner : MonoBehaviour {
 	// For customizable spawning randomness
 	private int randomTypePercentage = 100;
 
+	private int unitsSpawned = 0;
+
 #pragma warning disable
 	SpriteRenderer renderer;
 #pragma warning restore
@@ -60,6 +62,7 @@ public class EnemySpawner : MonoBehaviour {
 		if (!spawn) yield break;
 
 		SpawnEnemy(GetRandomEnemyType(GetEnemyTypeAmount()), enemyManager, GetRandomSpawnPos(spawnField));
+		unitsSpawned++;
 
 		yield return new WaitForSeconds(waitTime);
 		StartCoroutine(SpawnEnemy(waitTime, spawnField));
@@ -105,14 +108,13 @@ public class EnemySpawner : MonoBehaviour {
 
 	public EnemyType GetRandomEnemyType(int typeAmount)
 	{
-
 		int index = 0;
 		index = UnityEngine.Random.Range(0, typeAmount * (randomTypePercentage / typeAmount));
 
 		//TODO create a good working customizable random spawner
 
 		spawnChance.Sort();
-
+		
 		if (index < spawnChance[0])
 		{
 			return EnemyType.Archer;
@@ -160,11 +162,17 @@ public class EnemySpawner : MonoBehaviour {
 		spawnField.transform.position = new Vector2(cam.transform.position.x, cameraWorldSpaceEdges.y + renderer.bounds.extents.y);
 	}
 
+	public void ResetUnitsSpawned()
+	{
+		unitsSpawned = 0;
+	}
+
 public List<Enemy> Enemies { get { return enemies; } }
 //public List<List<int>> UnitSpawnAmount { get { return unitSpawnAmount; } }
 public List<int> UnitSpawnAmount { get { return unitSpawnAmount; } }
 public bool Spawn { get { return spawn; } set { spawn = value; } }
 public float SpawnTime { get { return spawnTime; } }
+public int UnitsSpawned { get { return unitsSpawned; } }
 
 // TEMP
 public Vector4 SpawnCoords { get { return spawnCoords; } }
