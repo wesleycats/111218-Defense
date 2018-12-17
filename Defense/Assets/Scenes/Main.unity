@@ -900,18 +900,18 @@ MonoBehaviour:
   - 10
   - 5
   waveDiffIncreaser:
-  - 1.025
+  - 1.01
+  - 1.01
   - 1.05
-  - 1.1
-  - 1.15
+  - 1.05
   dayDiffIncreaser:
-  - 1.1
-  - 1.2
-  - 1.3
-  - 1.4
+  - 1.25
+  - 1.5
+  - 1.8
+  - 2
   difficultyIncreaser:
   - 0.8
-  - 0.9
+  - 1
   - 1.2
   - 1.3
   enemyColors:
@@ -1384,7 +1384,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shooter
+  m_Text: Archer
 --- !u!222 &357888871
 CanvasRenderer:
   m_ObjectHideFlags: 0
