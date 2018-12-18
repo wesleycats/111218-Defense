@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7effe674afe7e2748b12abb81121dc6b, type: 3}
   m_Name: BaseData
   m_EditorClassIdentifier: 
-  coins: 12
+  coins: 0
   maxHealth: 100
   damageOutput: 1
   attackSpeed: 1
