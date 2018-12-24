@@ -887,18 +887,18 @@ MonoBehaviour:
   - 2
   - 1
   - 1
-  - 1
+  - 1.5
   - 0.8
   - 5
   - 0
   archerStats:
   - 1
-  - 2
   - 1
-  - 0.5
-  - 10
-  - 10
-  - 5
+  - 1
+  - 1
+  - 8
+  - 15
+  - 3
   waveDiffIncreaser:
   - 1.01
   - 1.01

@@ -12,6 +12,9 @@ public class UpgradeData : ScriptableObject {
 	[SerializeField] private float damageUpgradeAmount;
 	[SerializeField] private int attackSpeedUpgradeCost;
 	[SerializeField] private float attackSpeedUpgradeAmount;
+	
+	[Tooltip("[0]=TripleHp, [1]=TripleDamage, [2]=TripleAttackSpeed")]
+	[SerializeField] private List<bool> startPowerUps;
 
 	[Header("Default")]
 	[SerializeField] private int beginHpUpgradeCost;
@@ -43,4 +46,7 @@ public class UpgradeData : ScriptableObject {
 	public float HpUpgradeIncremental { get { return hpUpgradeIncremental; } }
 	public float DamageUpgradeIncremental { get { return damageUpgradeIncremental; } }
 	public float AttackSpeedUpgradeIncremental { get { return attackSpeedUpgradeIncremental; } }
+
+	public List<bool> StartPowerUps { get { return startPowerUps; } set { startPowerUps = value; } }
+
 }

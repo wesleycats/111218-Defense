@@ -11,3 +11,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d5e9d59a473fd468d6e68d8f11b4c2, type: 3}
   m_Name: EnemyData
   m_EditorClassIdentifier: 
+  enemyTypeForm:
+    warriorStatsForm:
+      enemyData: {fileID: 0}
+      health: 0
+      damage: 0
+      moveSpeed: 0
+      attackSpeed: 0
+      projectileSpeed: 0
+      attackDistance: 0
+      coinValue: 0
+      defaultHealth: 0
+      defaultDamage: 0
+      defaultMoveSpeed: 0
+      defaultAttackSpeed: 0
+      defaultProjectileSpeed: 0
+      defaultAttackDistance: 0
+      defaultCoinValue: 0
+    archerStatsForm:
+      enemyData: {fileID: 0}
+      health: 0
+      damage: 0
+      moveSpeed: 0
+      attackSpeed: 0
+      projectileSpeed: 0
+      attackDistance: 0
+      coinValue: 0
+      defaultHealth: 0
+      defaultDamage: 0
+      defaultMoveSpeed: 0
+      defaultAttackSpeed: 0
+      defaultProjectileSpeed: 0
+      defaultAttackDistance: 0
+      defaultCoinValue: 0
+  enemyStatsForms: []

@@ -17,6 +17,7 @@ MonoBehaviour:
   damageUpgradeAmount: 1
   attackSpeedUpgradeCost: 50
   attackSpeedUpgradeAmount: 1
+  startPowerUps: 000000
   beginHpUpgradeCost: 50
   beginHpUpgradeAmount: 25
   beginDamageUpgradeCost: 50

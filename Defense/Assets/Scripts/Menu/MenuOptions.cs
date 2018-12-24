@@ -82,5 +82,7 @@ public class MenuOptions : MonoBehaviour {
 		upgradeData.DamageUpgradeAmount = upgradeData.BeginDamageUpgradeAmount;
 		upgradeData.AttackSpeedUpgradeCost = upgradeData.BeginAttackSpeedUpgradeCost;
 		upgradeData.AttackSpeedUpgradeAmount = upgradeData.BeginAttackSpeedUpgradeAmount;
+
+		foreach (bool i in upgradeData.StartPowerUps) upgradeData.StartPowerUps[upgradeData.StartPowerUps.IndexOf(i)] = false;
 	}
 }

@@ -41,7 +41,7 @@ public class PlayerShoot : MonoBehaviour {
 		transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 	}
 
-	private void Shoot(InputManager.InputActions action)
+	private void Shoot(InputManager.InputActions action, float axis)
 	{
 		if (action != InputManager.InputActions.Click) return;
 
@@ -53,13 +53,13 @@ public class PlayerShoot : MonoBehaviour {
 			projectile.SetProjectileAttributes(projectile, baseData.DamageOutput, baseData.ProjectileSpeed, transform.tag);
 
 			lastShotTimer = 0;
-			ResetAttackTimer(InputManager.InputActions.Reset);
+			ResetAttackTimer(InputManager.InputActions.Reset, 0);
 		}
 
 		attackTimer += 1f;
 	}
 
-	public void ResetAttackTimer(InputManager.InputActions action)
+	public void ResetAttackTimer(InputManager.InputActions action, float axis)
 	{
 		if (action != InputManager.InputActions.Reset) return;
 
