@@ -12,7 +12,8 @@ public class PlayerShoot : MonoBehaviour {
 	public Transform weapon;
 	public InputManager input;
 	public BaseData baseData;
-	
+	public Base baseClass;
+
 	[SerializeField] private float attackTimer = 0f;
 	[SerializeField] private float lastShotTimer = 0f;
 	private float cooldown = 0f;
@@ -21,14 +22,13 @@ public class PlayerShoot : MonoBehaviour {
 	void Start () {
 		input.OnInput += Shoot;
 		input.OnInput += ResetAttackTimer;
-
-		cooldown = fps / baseData.AttackSpeed;
 	}
 
 	void Update ()
 	{
 		if (Time.timeScale < 1) return;
 
+		cooldown = fps / baseClass.AttackSpeed;
 		LookAtMouse();
 		lastShotTimer += 1;
 	}

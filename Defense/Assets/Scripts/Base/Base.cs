@@ -11,38 +11,50 @@ public class Base : MonoBehaviour
 	public LevelManager levelManager;
 	
 	// Attributes
-	private float currentHealth;
-	private float damageOutput;
-	private float attackSpeed;
-	private float projectileSpeed;
+	[SerializeField] private float currentHealth;
+	[SerializeField] private float damageOutput;
+	[SerializeField] private float attackSpeed;
+	[SerializeField] private float projectileSpeed;
 
 	void Start()
 	{
 		InitAttributes();
 	}
 
+	public void ResetHealth()
+	{
+		currentHealth = baseData.MaxHealth;
+	}
+
+	public void ResetAttackspeed()
+	{
+		attackSpeed = baseData.AttackSpeed;
+	}
+
+	public void ResetDamage()
+	{
+		damageOutput = baseData.DamageOutput;
+	}
+
 	public void IncreaseHealth(float amount)
 	{
 		if (!FindObjectOfType<DebugBase>()) return;
-		if (!FindObjectOfType<DebugBase>().Godmode) return;
 
 		currentHealth += amount;
+	}
+
+	public void IncreaseAttackspeed(float amount)
+	{
+		if (!FindObjectOfType<DebugBase>()) return;
+
+		attackSpeed += amount;
 	}
 
 	public void IncreaseDamage(float amount)
 	{
 		if (!FindObjectOfType<DebugBase>()) return;
-		if (!FindObjectOfType<DebugBase>().Godmode) return;
 
 		damageOutput += amount;
-	}
-
-	public void IncreaseAttackSpeed(float amount)
-	{
-		if (!FindObjectOfType<DebugBase>()) return;
-		if (!FindObjectOfType<DebugBase>().Godmode) return;
-
-		attackSpeed += amount;
 	}
 
 	public void DecreaseHealth(float amount)
