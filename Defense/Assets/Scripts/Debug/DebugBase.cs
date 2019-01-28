@@ -13,21 +13,46 @@ public class DebugBase : MonoBehaviour {
 
 	[SerializeField] private bool godmode;
 	[SerializeField] private bool resetCoins;
+	[SerializeField] private bool laser;
 
 	void Update() {
 		if (godmode)
 		{
 			baseClass.IncreaseHealth(999999999);
-			baseClass.IncreaseDamage(999999999);
-			baseClass.IncreaseAttackSpeed(999999999);
 			godmode = false;
 		}
-		
+
+		if (laser)
+		{
+			baseClass.IncreaseAttackspeed(999999999);
+			baseClass.IncreaseDamage(999999999);
+			laser = false;
+		}
+
 		if (resetCoins)
 		{
 			baseData.Coins = 0;
 			resetCoins = false;
 		}
+	}
+
+	public void ActivateGodmode(bool activate)
+	{
+		godmode = activate;
+
+		if (activate) return;
+
+		baseClass.ResetHealth();
+	}
+
+	public void ActivateLaser(bool activate)
+	{
+		laser = activate;
+
+		if (activate) return;
+
+		baseClass.ResetAttackspeed();
+		baseClass.ResetDamage();
 	}
 
 	public bool Godmode { get { return godmode; } }

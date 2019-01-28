@@ -8,29 +8,34 @@ using UnityEngine;
 /// </summary>
 public class InputManager : MonoBehaviour {
 
-	public enum InputActions { Click, Reset };
-	public Action<InputActions> OnInput;
+	public enum InputActions { Click, Reset, Zoom };
+	public Action<InputActions, float> OnInput;
 
 	private bool attackReset = true;
 
 	void Update() {
 		if (Input.GetMouseButton(0))
 		{
-			SendInput(InputActions.Click);
+			SendInput(InputActions.Click, 0);
 			attackReset = true;
 		}
 		else if (attackReset)
 		{
-			SendInput(InputActions.Reset);
+			SendInput(InputActions.Reset, 0);
 			attackReset = false;
+		}
+
+		if (Input.GetAxis("Mouse ScrollWheel") != 0)
+		{
+			SendInput(InputActions.Zoom, Input.GetAxis("Mouse ScrollWheel"));
 		}
 	}
 
-	private void SendInput(InputActions inputActions)
+	private void SendInput(InputActions inputActions, float axis)
 	{
 		if (OnInput != null)
 		{
-			OnInput(inputActions);
+			OnInput(inputActions, axis);
 		}
 	}
 }

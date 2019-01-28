@@ -9,13 +9,13 @@ public class EnemyManager : MonoBehaviour {
 
 	public GameData gameData;
 	public BaseData baseData;
+	public EnemySpawner spawner;
 
-	//TODO change all data to scriptable EnemyData
-
+	//TODO change all enemy stats to the forms in enemyData
 	[Header("Warrior Stats")]
-	[Tooltip("[0]=health, [1]=damage, [2]=move speed, [3]=attack speed, [4]=attack distance, [5]=projectile speed, [6]=coin value")]
+	[Tooltip("[0]=health, [1]=damage, [2]=move speed, [3]=attack speed, [4]=attack distance, [5]=coin value, [6]=projectile speed")]
 	[SerializeField] private List<float> warriorStats = new List<float>();
-	[Tooltip("[0]=health, [1]=damage, [2]=move speed, [3]=attack speed, [4]=attack distance, [5]=projectile speed, [6]=coin value")]
+	[Tooltip("[0]=health, [1]=damage, [2]=move speed, [3]=attack speed, [4]=attack distance, [5]=coin value, [6]=projectile speed")]
 	[SerializeField] private List<float> archerStats = new List<float>();
 
 	[Header("Precentages of increased difficulty")]
@@ -58,7 +58,14 @@ public class EnemyManager : MonoBehaviour {
 	{
 		baseData.Coins += amount;
 	}
-	
+
+
+	public int GetEnemyTypeAmount()
+	{
+		return spawner.GetEnemyTypeAmount();
+	}
+
+
 	/// <summary>
 	/// Increases difficulty based on chosen level and which wave and day the player is on
 	/// </summary>

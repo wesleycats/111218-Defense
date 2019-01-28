@@ -1347,7 +1347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: bac578109ee20614ea26957fa2fc99a7, type: 2}
   continueButton: {fileID: 1774328100}
-  difficultyButton: {fileID: 1904435040}
+  enemyData: {fileID: 11400000, guid: 04f028c8d4fe52744a71bd2cd5bf3805, type: 2}
 --- !u!1 &2062745927
 GameObject:
   m_ObjectHideFlags: 0
