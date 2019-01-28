@@ -8,11 +8,93 @@ public class DebugUI : MonoBehaviour {
 	public GameObject features;
 	public BaseData baseData;
 	public DebugBase debugBase;
+	public Text clock;
 
 	[SerializeField] private bool isShown = false;
 
+	private int seconds;
+	private int minutes;
+	private int hours;
+
 	void Start () {
 		features.SetActive(isShown);
+
+		StartCoroutine(Clock());
+	}
+
+	IEnumerator Clock()
+	{
+		seconds++;
+
+		if (seconds > 59)
+		{
+			seconds = 0;
+			minutes++;
+		}
+
+		if (minutes > 59)
+		{
+			minutes = 0;
+			hours++;
+		}
+
+		clock.text = hours.ToString() + "\"\"" + minutes.ToString() + "\"\"" + seconds.ToString();
+
+		// adds a zero before the time unit so it is a double digit
+		if (hours < 10)
+		{
+			if (minutes < 10)
+			{
+				if (seconds < 10)
+				{
+					clock.text = "0" + hours.ToString() + "\"\"0" + minutes.ToString() + "\"\"0" + seconds.ToString();
+				}
+				else
+				{
+					clock.text = "0" + hours.ToString() + "\"\"0" + minutes.ToString() + "\"\"" + seconds.ToString();
+				}
+			}
+			else
+			{
+				if (seconds < 10)
+				{
+					clock.text = "0" + hours.ToString() + "\"\"" + minutes.ToString() + "\"\"0" + seconds.ToString();
+				}
+				else
+				{
+					clock.text = "0" + hours.ToString() + "\"\"" + minutes.ToString() + "\"\"" + seconds.ToString();
+				}
+			}
+		} else
+		{
+			if (minutes < 10)
+			{
+				if (seconds < 10)
+				{
+					clock.text = hours.ToString() + "\"\"0" + minutes.ToString() + "\"\"0" + seconds.ToString();
+				}
+				else
+				{
+					clock.text = hours.ToString() + "\"\"0" + minutes.ToString() + "\"\"" + seconds.ToString();
+				}
+			}
+			else
+			{
+				if (seconds < 10)
+				{
+					clock.text = hours.ToString() + "\"\"" + minutes.ToString() + "\"\"0" + seconds.ToString();
+				}
+				else
+				{
+					clock.text = hours.ToString() + "\"\"" + minutes.ToString() + "\"\"" + seconds.ToString();
+				}
+			}
+		}
+
+
+
+		yield return new WaitForSeconds(1);
+		StartCoroutine(Clock());
 	}
 
 	public void ActivatePanel()
